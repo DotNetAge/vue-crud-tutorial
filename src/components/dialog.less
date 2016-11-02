@@ -1,0 +1,44 @@
+.dialog-wrapper {
+  &.open {
+    display: block;
+    & .dialog {
+      top: 24px;
+    }
+  }
+
+  height: 100%;
+  display: none;
+
+  & > .overlay {
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  & > .dialog {
+    transiton: 1s;
+    z-index: 10;
+    background: #fff;
+    position: absolute;
+    top: -1024px;
+    left: 24px;
+    right: 24px;
+    padding: 24px 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+
+    & header {
+      padding: 0 14px 14px 0;
+      font-size: 20px;
+    }
+
+    & footer {
+      margin-top: 10px;
+      border-top: 1px solid #ddd;
+      padding: 14px 14px 0 0;
+    }
+  }
+}

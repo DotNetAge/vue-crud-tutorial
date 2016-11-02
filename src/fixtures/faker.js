@@ -1,0 +1,2 @@
+import "./items.json"
+
