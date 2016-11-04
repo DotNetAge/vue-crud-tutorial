@@ -41,20 +41,43 @@ module.exports = {
                 options: {
                     name: '[name].[ext]?[hash]'
                 }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: '[name].[hash:7].[ext]'
+                }
             }
         ]
     },
     resolve: {
+        root:[
+            path.resolve(__dirname, './node_modules/moment')
+        ],
         alias: {
-            'vue$': 'vue/dist/vue'
+            'vue$': 'vue/dist/vue',
+            'uikit-css$': 'uikit/dist/css/uikit.css',
+            'uikit-theme$': 'uikit/dist/css/uikit.almost-flat.css',
+            'ui-datepicker$': 'uikit/dist/js/components/datepicker'
         }
     },
     devServer: {
         historyApiFallback: true,
         noInfo: true
     },
-    devtool: '#eval-source-map'
+    devtool: '#eval-source-map',
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery",
+            "window.$": "jquery"
+        })
+    ]
 }
+
 
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'

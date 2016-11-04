@@ -1,9 +1,7 @@
 <template>
-    <div class="dialog-wrapper"
-         :class="{'open':is_open}">
-        <div class="overlay"
-             @click="close"></div>
-        <div class="dialog">
+    <div class="uk-modal"
+         ref="modal">
+        <div class="uk-modal-dialog">
             <slot name="header"></slot>
             <slot></slot>
             <slot name="footer"></slot>
@@ -11,22 +9,25 @@
     </div>
 </template>
 
-<script>
-    import "./dialog.less"
+<script type="text/ecmascript-6">
     export default {
         data () {
             return {
-                is_open: false
+                dialog: undefined
             }
+        },
+        mounted () {
+            this.dialog = UIkit.modal(this.$refs.modal)
+            var self = this
+            this.dialog.on('show.uk.modal', ()=> self.$emit('dialogOpen'))
+            this.dialog.on('hide.uk.modal', ()=> self.$emit('dialogClose'))
         },
         methods: {
             open() {
-                this.is_open = true
-                this.$emit('dialogOpen')
+                this.dialog.show()
             },
             close() {
-                this.is_open = false
-                this.$emit('dialogClose')
+                this.dialog.hide()
             }
         }
     }
