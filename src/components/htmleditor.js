@@ -18,6 +18,7 @@ export default {
     mounted () {
         // Vue 2.0 的组件只能单向赋值,以往可以通过两路绑定的做法已经失效
         // 所以只能通过事件将组件内部的数据变化暴露给父组件
+        debugger
         var htmlEditor = UIkit.htmleditor(this.$refs.editor, {
             markdown: true,
             mode: 'tab'
