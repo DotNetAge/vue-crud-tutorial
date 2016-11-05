@@ -53,14 +53,11 @@ module.exports = {
         ]
     },
     resolve: {
-        root:[
-            path.resolve(__dirname, './node_modules/moment')
-        ],
         alias: {
             'vue$': 'vue/dist/vue',
             'uikit-css$': 'uikit/dist/css/uikit.css',
-            'uikit-theme$': 'uikit/dist/css/uikit.almost-flat.css',
-            'ui-datepicker$': 'uikit/dist/js/components/datepicker'
+            'uikit-theme$': 'uikit/dist/css/uikit.almost-flat.css'
+            //'ui-datepicker$': 'uikit/dist/js/components/datepicker'
         }
     },
     devServer: {
@@ -70,6 +67,7 @@ module.exports = {
     devtool: '#eval-source-map',
     plugins: [
         new webpack.ProvidePlugin({
+            CodeMirror:"codemirror",
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery",

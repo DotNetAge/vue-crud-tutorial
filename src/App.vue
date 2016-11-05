@@ -32,6 +32,7 @@
                         <button title="删除已选中的图书"
                                 class="uk-button uk-button-danger"
                                 @click="removeBooks"
+                                v-if="hasSelection"
                         ><i class="uk-icon-trash"></i>
                         </button>
 
@@ -73,6 +74,7 @@
                     <td class="book-name uk-form uk-grid">
                         <div class="uk-width-1-10">
                             <input type="checkbox"
+                                   @change="selectChanged(book,$event)"
                                    class="uk-margin-right"/>
                         </div>
                         <div class="uk-width-9-10">
@@ -99,52 +101,110 @@
                 <form class="uk-form uk-form-horizontal"
                       v-if="current">
                     <div class="uk-container uk-container-center">
-                        <div class="uk-form-row">
-                            <label class="uk-form-label"
-                                   for="book-name-field">书名</label>
-                            <div class="uk-form-controls">
-                                <input id="book-name-field"
-                                       class="uk-form-width-large"
-                                       autofocus="autofocus"
-                                       v-model="current.name"/>
-                            </div>
-                        </div>
-                        <div class="uk-form-row">
-                            <label class="uk-form-label"
-                                   for="book-category-field">类别</label>
-                            <div class="uk-form-controls">
-                                <input id="book-category-field"
-                                       class="uk-form-width-large"
-                                       v-model="current.category"/>
-                            </div>
-                        </div>
-                        <div class="uk-form-row">
-                            <label class="uk-form-label"
-                                   for="book-published-field">出版日期</label>
-                            <div class="uk-form-controls">
-                                <input id="book-published-field"
-                                       class="uk-form-width-large"
-                                       v-model="current.published"
-                                       ref="published"
-                                />
-                            </div>
-                        </div>
-                        <div class="uk-form-row">
-                            <label class="uk-form-label"
-                                   for="book-authors-field">作者</label>
-                            <div class="uk-form-controls">
-                                <input id="book-authors-field"
-                                       class="uk-form-width-large"
-                                       v-model="authors"/>
-                            </div>
-                        </div>
+                        <ul class="uk-tab" data-uk-tab="{active:0,connect:'#tabContents'}">
+                            <li><a href="">通用</a></li>
+                            <li><a href="">摘要</a></li>
+                        </ul>
+                        <ul class="uk-switcher uk-margin" id="tabContents">
+                            <li>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-name-field">书名</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-name-field"
+                                               class="uk-form-width-large"
+                                               autofocus="autofocus"
+                                               v-model="current.name"/>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-isbn-field">书号</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-isbn-field"
+                                               class="uk-form-width-large"
+                                               v-model="current.isbn"/>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-price-field">售价</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-price-field"
+                                               class="uk-form-width-large"
+                                               type="number"
+                                               min="0.0"
+                                               step="any"
+                                               v-model="current.price"/>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-category-field">类别</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-category-field"
+                                               class="uk-form-width-large"
+                                               v-model="current.category"/>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-published-field">出版日期</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-published-field"
+                                               class="uk-form-width-large"
+                                               v-model="current.published"
+                                               ref="published"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label">&nbsp;</label>
+                                    <div class="uk-form-controls">
+                                        <label>
+                                            <input type="checkbox"
+                                                   v-model="is_published"/> 上市销售
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-pages-field">页数</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-pages-field"
+                                               class="uk-form-width-large"
+                                               type="number"
+                                               min="100"
+                                               v-model="current.pages"/>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label"
+                                           for="book-authors-field">作者</label>
+                                    <div class="uk-form-controls">
+                                        <input id="book-authors-field"
+                                               class="uk-form-width-large"
+                                               v-model="authors"/>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+                                <html-editor :value="current.summary"
+                                             @change="current.summary = $event"></html-editor>
+
+                            </li>
+                        </ul>
                     </div>
                 </form>
-                <div slot="footer" class="uk-modal-footer uk-text-right">
+                <div slot="footer"
+                     class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-primary"
                             @click.prevent="save">保存
                     </button>
-                    <button class="uk-button uk-button-danger" @click.prevent="$refs.modal.close()">关闭</button>
+                    <button class="uk-button uk-button-danger"
+                            @click.prevent="$refs.modal.close()">关闭
+                    </button>
                 </div>
             </modal>
         </div>
@@ -155,8 +215,8 @@
     import "./assets/site.less"
     import BookData from "./fixtures/items.json"
     import Modal from "./components/dialog.vue"
+    import HtmlEditor from "./components/htmleditor"
     import _ from "lodash"
-
 
     export default {
         data () {
@@ -166,7 +226,8 @@
                 direction: 'asc',
                 current: undefined,
                 statusText: "",
-                books: BookData
+                books: BookData,
+                selection: []
             }
         },
         created () {
@@ -178,10 +239,19 @@
 //            })
         },
         mounted() {
-            console.log(this.$refs.published)
+            //console.log(this.$refs)
+            // 在 Modal 内容纳的其它元素是无法用 ref 引用到的.
             //UIkit.datepicker(this.$refs.published)
         },
         computed: {
+            is_published: {
+                get(){
+                    return this.current.status == '上市销售'
+                },
+                set(val){
+                    this.current.status = val ? '上市销售' : ''
+                }
+            },
             authors: {
                 get (){
                     return this.current.authors ? this.current.authors.join(',') : ''
@@ -195,6 +265,12 @@
                     return this.books.filter((x)=>x.name.indexOf(this.terms) > -1)
                 else
                     return this.books
+            },
+//            selectedBooks () {
+//                return this.books.filter((book)=> this.selections.find((b)=>book.isbn == b.isbn) != undefined)
+//            },
+            hasSelection () {
+                return this.selection.length > 0
             }
         },
         filters: {
@@ -202,9 +278,26 @@
                 return (val) ? val.join(',') : '无名氏'
             }
         },
-
         methods: {
-            filterByBookName() {
+            summaryChanged (e){
+                console.log(e)
+            },
+            filterByBookName () {
+            },
+            selectChanged (book, e) {
+                // 将 book.selected 绑定到checkbox上而同时用change事件检测哪
+                // 些 book.selected 为true 因为 `selected` 在book上是不存在的
+                // 而正因此我们得到一个思路,可以为对象增加一些辅助属性
+                if (e.target.checked) {
+                    this.selection.push(book.isbn)
+                    this.selection = _.uniq(this.selection)
+                } else {
+                    this.selection = _.reject(this.selection, (b)=> book.isbn === b.isbn)
+
+                    // 这是一个逻辑错误
+                    //this.selection = this.selection.filter((b)=> b.isbn == book.isbn)
+                }
+                console.log(this.selection)
             },
             newBook () {
                 this.current = {}
@@ -231,13 +324,14 @@
                 this.books = _.orderBy(this.books, key, this.direction)
             },
             save() {
-                this.books.push(this.current)
+                console.log(this.current.summary)
+                //this.books.push(this.current)
             },
             removeBooks(book) {
                 UIkit.modal.alert('真的要删除所选中的图书吗?');
                 //this.books = this.books.filter(x =>x != book)
             }
         },
-        components: {Modal}
+        components: {Modal, HtmlEditor}
     }
 </script>
