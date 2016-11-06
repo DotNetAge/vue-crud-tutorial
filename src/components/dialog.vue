@@ -2,7 +2,12 @@
     <div class="uk-modal"
          ref="modal">
         <div class="uk-modal-dialog">
-            <slot name="header"></slot>
+            <slot name="header">
+                <div slot="header" class="uk-modal-header">
+                    <a class="uk-modal-close uk-close uk-float-right"></a>
+                    <h2 class="uk-display-inline">{{ headerText }}</h2>
+                </div>
+            </slot>
             <slot></slot>
             <slot name="footer"></slot>
         </div>
@@ -16,6 +21,7 @@
                 dialog: undefined
             }
         },
+        props: ['headerText'],
         mounted () {
             this.dialog = UIkit.modal(this.$refs.modal)
             var self = this

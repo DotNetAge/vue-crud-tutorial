@@ -84,8 +84,6 @@
                                @click.prevent="editBook(book)">{{ book.name }}</a>
                             <p class="authors uk-text-muted uk-text-small">{{ book.authors | join }}</p>
                         </div>
-
-
                     </td>
                     <td class="small">{{ book.category }}</td>
                     <td class="published uk-text-center">{{ book.published }}</td>
@@ -93,11 +91,8 @@
                 </tbody>
             </table>
             <modal ref="modal"
+                   :headerText="statusText"
                    @dialogClose="current=undefined">
-                <div slot="header" class="uk-modal-header">
-                    <a class="uk-modal-close uk-close uk-float-right"></a>
-                    <h2 class="uk-display-inline">{{ statusText }}</h2>
-                </div>
                 <form class="uk-form uk-form-horizontal"
                       v-if="current">
                     <div class="uk-container uk-container-center">
@@ -328,8 +323,9 @@
                 //this.books.push(this.current)
             },
             removeBooks(book) {
-                UIkit.modal.alert('真的要删除所选中的图书吗?');
+                //UIkit.modal.alert('真的要删除所选中的图书吗?');
                 //this.books = this.books.filter(x =>x != book)
+                this.$ui.alert('真的要删除所选中的图书吗?')
             }
         },
         components: {Modal, HtmlEditor}
