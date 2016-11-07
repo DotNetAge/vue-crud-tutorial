@@ -32,22 +32,27 @@ export const Tabs = {
             default: 0
         }
     },
-    render (h) {
-
-        const _tabs = this.$slots.default.filter(node =>
+    data() {
+        return {
+            tabItems:[]
+        }
+    },
+    beforeMount(){
+        this.tabItems = this.$slots.default.filter(node =>
             node.componentOptions && node.componentOptions.tag === 'tab'
         ).map((node, index) => {
             const data = node.componentOptions.propsData
             data.index = index
             return node
         })
-
+    },
+    render (h) {
         return (
             <div>
                 <ul class="uk-tab"
                     data-uk-tab="{ active:0,connect:'#tabContents'}">
                     {
-                        _tabs.map( tab =>(
+                        this.tabItems.map( tab =>(
                             <li>
                                 <a href="">{ tab.label }</a>
                             </li>
@@ -57,7 +62,7 @@ export const Tabs = {
                 </ul>
                 <ul class="uk-switcher uk-margin"
                     id="tabContents">
-                    { _tabs }
+                    { this.tabItems }
                 </ul>
             </div>
         )

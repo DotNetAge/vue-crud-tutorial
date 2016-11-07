@@ -16,7 +16,9 @@ describe('datatable', ()=> {
 
                 return (
                     <div>
-                        <data-table columns={ _columns }></data-table>
+                        <data-table columns={ _columns }>
+                           
+                        </data-table>
                     </div>
                 )
             }
