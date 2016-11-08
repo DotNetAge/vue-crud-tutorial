@@ -32,6 +32,7 @@
             <button title="删除已选中的图书"
                     class="uk-button uk-button-danger"
                     @click="removeBooks"
+                    id="btn-delete"
                     v-if="hasSelection"
             ><i class="uk-icon-trash"></i>
             </button>
@@ -70,12 +71,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="book in bookFilter">
+        <tr v-for="book in bookFilter" :data-isbn="book.isbn">
           <td class="book-name uk-form uk-grid">
             <div class="uk-width-1-10">
               <input type="checkbox"
                      @change="selectChanged(book,$event)"
-                     class="uk-margin-right"/>
+                     class="uk-margin-right cb-book"/>
             </div>
             <div class="uk-width-9-10">
               <a class="uk-h3"
