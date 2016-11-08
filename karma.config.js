@@ -30,7 +30,9 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'src/**/*spec.js'
+            'src/**/*spec.js',
+            //'src/*e2e.js',
+            //'src/**/*e2e.js'
         ],
 
 
@@ -42,6 +44,8 @@ module.exports = function (config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'src/**/*spec.js': ['webpack', 'sourcemap']
+            , 'src/*e2e.js': ['webpack', 'sourcemap']
+            , 'src/**/*e2e.js': ['webpack', 'sourcemap']
         },
 
 
