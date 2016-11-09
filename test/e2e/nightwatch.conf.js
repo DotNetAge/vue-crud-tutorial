@@ -1,16 +1,25 @@
-require('babel-register')
-var config = require('../../config')
+require('babel-register');
+var config = require('../../config');
+
+var seleniumServer = require('selenium-server');
+var phantomjs = require('phantomjs-prebuilt');
+
+//
+// require('nightwatch-cucumber')({
+//   nightwatchClientAsParameter: true,
+//   featureFiles: ['test/e2e/features'],
+//   stepDefinitions: ['test/e2e/features/step_definitions']
+// });
 
 // http://nightwatchjs.org/guide#settings-file
 module.exports = {
   "src_folders": ["test/e2e/specs"],
   "output_folder": "test/e2e/reports",
   "custom_assertions_path": ["test/e2e/custom-assertions"],
-  "page_objects_path": "test/e2e/pages",
 
   "selenium": {
     "start_process": true,
-    "server_path": "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.53.1.jar",
+    "server_path": seleniumServer.path,
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
@@ -19,7 +28,6 @@ module.exports = {
   },
 
   "test_settings": {
-
     "default": {
       "selenium_port": 4444,
       "selenium_host": "localhost",
