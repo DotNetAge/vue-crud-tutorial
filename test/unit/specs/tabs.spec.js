@@ -1,8 +1,9 @@
 import {Tabs, Tab} from './tabs.spec'
-import {getVM} from '../../utils'
+import {getVM} from '../helpers'
 
 describe('tabs', () => {
   it('应该输出tab内容页所需的网页结构', () => {
+    debugger
     let vm = getVM(h => (<ul>
       <tab label="通用">
         <div class="tab-content"></div>

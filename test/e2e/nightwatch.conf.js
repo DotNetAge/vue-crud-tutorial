@@ -1,5 +1,15 @@
-require('babel-register')
-var config = require('../../config')
+require('babel-register');
+var config = require('../../config');
+
+var seleniumServer = require('selenium-server');
+var phantomjs = require('phantomjs-prebuilt');
+
+//
+// require('nightwatch-cucumber')({
+//   nightwatchClientAsParameter: true,
+//   featureFiles: ['test/e2e/features'],
+//   stepDefinitions: ['test/e2e/features/step_definitions']
+// });
 
 // http://nightwatchjs.org/guide#settings-file
 module.exports = {
@@ -9,7 +19,7 @@ module.exports = {
 
   "selenium": {
     "start_process": true,
-    "server_path": "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.53.1.jar",
+    "server_path": seleniumServer.path,
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
@@ -27,20 +37,29 @@ module.exports = {
       }
     },
 
-    "chrome": {
+    "phantom": {
       "desiredCapabilities": {
-        "browserName": "chrome",
+        "browserName": "phantomjs",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
-      }
-    },
-
-    "firefox": {
-      "desiredCapabilities": {
-        "browserName": "firefox",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36",
+        "phantomjs.binary.path": phantomjs.path
       }
     }
+    // ,"chrome": {
+    //   "desiredCapabilities": {
+    //     "browserName": "chrome",
+    //     "javascriptEnabled": true,
+    //     "acceptSslCerts": true
+    //   }
+    // },
+    //
+    // "firefox": {
+    //   "desiredCapabilities": {
+    //     "browserName": "firefox",
+    //     "javascriptEnabled": true,
+    //     "acceptSslCerts": true
+    //   }
+    // }
   }
-}
+};
