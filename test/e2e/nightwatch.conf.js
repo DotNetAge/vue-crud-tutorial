@@ -4,7 +4,7 @@ var config = require('../../config');
 var seleniumServer = require('selenium-server');
 var phantomjs = require('phantomjs-prebuilt');
 
-//
+
 // require('nightwatch-cucumber')({
 //   nightwatchClientAsParameter: true,
 //   featureFiles: ['test/e2e/features'],
@@ -42,7 +42,7 @@ module.exports = {
         "browserName": "phantomjs",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "phantomjs.binary.path": "node_modules/phantomjs-prebuilt/bin/phantomjs",
+        "phantomjs.binary.path": phantomjs.path,
         "phantomjs.cli.args": ["--ignore-ssl-errors=true"],
         "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"
       }

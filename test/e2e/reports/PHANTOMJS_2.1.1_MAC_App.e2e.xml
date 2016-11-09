@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="App.e2e"
+    errors="0" failures="1" hostname="" id="" package="App.e2e" skipped="0"
+    tests="1" time="29.74" timestamp="Tue, 08 Nov 2016 16:36:02 GMT">
+  
+    <testcase name="图书记录多选测试" time="29.74" assertions="2">
+
+      <failure message=".cb-book">    at Object._ [as 图书记录多选测试] (/Users/Ray/Projects/vue-grid/test/e2e/specs/App.e2e.js:27:20)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>
