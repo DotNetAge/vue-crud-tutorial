@@ -1,37 +1,37 @@
-00:36:02.656 INFO - Launching a standalone Selenium Server
-00:36:02.715 INFO - Java: Oracle Corporation 25.102-b14
-00:36:02.715 INFO - OS: Mac OS X 10.12.1 x86_64
-00:36:02.729 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
-00:36:02.783 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+18:10:20.162 INFO - Launching a standalone Selenium Server
+18:10:20.193 INFO - Java: Oracle Corporation 25.101-b13
+18:10:20.194 INFO - OS: Mac OS X 10.12.1 x86_64
+18:10:20.208 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
+18:10:20.261 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
 registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-00:36:02.783 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+18:10:20.262 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
 registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-00:36:02.783 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-00:36:02.784 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-00:36:02.785 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
-00:36:02.785 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
-00:36:02.877 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
-00:36:02.877 INFO - Selenium Server is up and running
-00:36:04.931 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=node_modules/phantomjs-prebuilt/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]])
-00:36:04.938 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, phantomjs.binary.path=node_modules/phantomjs-prebuilt/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]
-00:36:04.944 INFO - executable: /Users/Ray/Projects/vue-grid/node_modules/phantomjs-prebuilt/bin/phantomjs
-00:36:04.944 INFO - port: 42782
-00:36:04.945 INFO - arguments: [--ignore-ssl-errors=true, --webdriver=42782, --webdriver-logfile=/Users/Ray/Projects/vue-grid/phantomjsdriver.log]
-00:36:04.945 INFO - environment: {}
-[INFO  - 2016-11-08T16:36:06.912Z] GhostDriver - Main - running on port 42782
-[INFO  - 2016-11-08T16:36:07.271Z] Session [72b63330-a5d1-11e6-8be8-21bac8ea12dd] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36","webSecurityEnabled":true}
-[INFO  - 2016-11-08T16:36:07.271Z] Session [72b63330-a5d1-11e6-8be8-21bac8ea12dd] - page.customHeaders:  - {}
-[INFO  - 2016-11-08T16:36:07.271Z] Session [72b63330-a5d1-11e6-8be8-21bac8ea12dd] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"}
-[INFO  - 2016-11-08T16:36:07.271Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 72b63330-a5d1-11e6-8be8-21bac8ea12dd
-00:36:07.296 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=node_modules/phantomjs-prebuilt/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]]
-00:36:07.307 INFO - Executing: [get: http://localhost:8080])
-00:36:33.951 INFO - Done: [get: http://localhost:8080]
-00:36:33.958 INFO - Executing: [find elements: By.cssSelector: #app])
-00:36:33.987 INFO - Done: [find elements: By.cssSelector: #app]
-00:36:33.993 INFO - Executing: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (72b63330-a5d1-11e6-8be8-21bac8ea12dd)] -> css selector: #app]])
-00:36:34.010 INFO - Done: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (72b63330-a5d1-11e6-8be8-21bac8ea12dd)] -> css selector: #app]]
-00:36:34.034 INFO - Executing: [find elements: By.cssSelector: css selector])
-00:36:34.262 INFO - Done: [find elements: By.cssSelector: css selector]
-00:36:34.291 INFO - Executing: [delete session: fd63b062-6893-4e2f-901e-d8f413a88074])
-[INFO  - 2016-11-08T16:36:34.300Z] ShutdownReqHand - _handle - About to shutdown
-00:36:34.514 INFO - Done: [delete session: fd63b062-6893-4e2f-901e-d8f413a88074]
+18:10:20.262 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+18:10:20.262 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+18:10:20.263 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
+18:10:20.263 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
+18:10:20.310 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+18:10:20.310 INFO - Selenium Server is up and running
+18:10:20.662 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]])
+18:10:20.670 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]
+18:10:20.677 INFO - executable: /usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs
+18:10:20.677 INFO - port: 17810
+18:10:20.677 INFO - arguments: [--ignore-ssl-errors=true, --webdriver=17810, --webdriver-logfile=/Users/ray/projects/vue-grid/phantomjsdriver.log]
+18:10:20.677 INFO - environment: {}
+[INFO  - 2016-11-10T10:10:22.056Z] GhostDriver - Main - running on port 17810
+[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36","webSecurityEnabled":true}
+[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - page.customHeaders:  - {}
+[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"}
+[INFO  - 2016-11-10T10:10:22.233Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e4052c50-a72d-11e6-86f5-ef69ed71feda
+18:10:22.262 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]]
+18:10:22.273 INFO - Executing: [get: http://localhost:8080])
+18:10:42.547 INFO - Done: [get: http://localhost:8080]
+18:10:42.562 INFO - Executing: [find elements: By.cssSelector: #app])
+18:10:42.584 INFO - Done: [find elements: By.cssSelector: #app]
+18:10:42.587 INFO - Executing: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (e4052c50-a72d-11e6-86f5-ef69ed71feda)] -> css selector: #app]])
+18:10:42.602 INFO - Done: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (e4052c50-a72d-11e6-86f5-ef69ed71feda)] -> css selector: #app]]
+18:10:42.608 INFO - Executing: [find elements: By.cssSelector: css selector])
+18:10:42.834 INFO - Done: [find elements: By.cssSelector: css selector]
+18:10:42.847 INFO - Executing: [delete session: 58839274-cd39-4b4f-9265-43d0a84d6815])
+[INFO  - 2016-11-10T10:10:42.853Z] ShutdownReqHand - _handle - About to shutdown
+18:10:43.179 INFO - Done: [delete session: 58839274-cd39-4b4f-9265-43d0a84d6815]

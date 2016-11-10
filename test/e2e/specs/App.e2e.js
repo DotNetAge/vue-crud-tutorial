@@ -4,7 +4,7 @@
 module.exports = {
   '图书记录多选测试': function (browser) {
     const devServer = browser.globals.devServerURL
-
+    debugger
     browser.url(devServer).waitForElementVisible('#app', 500)
     // .assert.elementPresent('#app')
     // .assert.elementPresent('.cb-book:first')
