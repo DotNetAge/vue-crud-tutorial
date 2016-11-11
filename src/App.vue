@@ -72,14 +72,14 @@
         </thead>
         <tbody>
         <tr v-for="book in bookFilter" :data-isbn="book.isbn">
-          <td class="book-name uk-form uk-grid">
+          <td class="uk-form uk-grid">
             <div class="uk-width-1-10">
               <input type="checkbox"
                      @change="selectChanged(book,$event)"
                      class="uk-margin-right cb-book"/>
             </div>
             <div class="uk-width-9-10">
-              <a class="uk-h3"
+              <a class="uk-h3 book-name"
                  href="javascript:void(0)"
                  :title="book.name"
                  @click.prevent="editBook(book)">{{ book.name }}</a>
@@ -235,11 +235,9 @@
 //            })
     },
     mounted () {
-
       // console.log(this.$refs)
       // 在 Modal 内容纳的其它元素是无法用 ref 引用到的.
       // UIkit.datepicker(this.$refs.published)
-
     },
     computed: {
       is_published: {

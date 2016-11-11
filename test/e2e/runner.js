@@ -18,9 +18,9 @@ if (opts.indexOf('--env') === -1) {
   opts = opts.concat(['--env', 'phantom'])
 }
 
+
 var spawn = require('cross-spawn')
-var runner = spawn('./node_modules/.bin/nightwatch', opts, { stdio: 'inherit' })
-//var runner = spawn('./node_modules/nightwatch/bin/runner.js', opts, { stdio: 'inherit' })
+var runner = spawn('./node_modules/.bin/nightwatch', opts, {stdio: 'inherit'})
 
 runner.on('exit', function (code) {
   server.close()

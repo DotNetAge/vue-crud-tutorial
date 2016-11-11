@@ -1,37 +1,91 @@
-18:10:20.162 INFO - Launching a standalone Selenium Server
-18:10:20.193 INFO - Java: Oracle Corporation 25.101-b13
-18:10:20.194 INFO - OS: Mac OS X 10.12.1 x86_64
-18:10:20.208 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
-18:10:20.261 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+18:27:08.621 INFO - Launching a standalone Selenium Server
+18:27:08.652 INFO - Java: Oracle Corporation 25.101-b13
+18:27:08.652 INFO - OS: Mac OS X 10.12.1 x86_64
+18:27:08.667 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
+18:27:08.725 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
 registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-18:10:20.262 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+18:27:08.726 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
 registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-18:10:20.262 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-18:10:20.262 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-18:10:20.263 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
-18:10:20.263 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
-18:10:20.310 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
-18:10:20.310 INFO - Selenium Server is up and running
-18:10:20.662 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]])
-18:10:20.670 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]
-18:10:20.677 INFO - executable: /usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs
-18:10:20.677 INFO - port: 17810
-18:10:20.677 INFO - arguments: [--ignore-ssl-errors=true, --webdriver=17810, --webdriver-logfile=/Users/ray/projects/vue-grid/phantomjsdriver.log]
-18:10:20.677 INFO - environment: {}
-[INFO  - 2016-11-10T10:10:22.056Z] GhostDriver - Main - running on port 17810
-[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36","webSecurityEnabled":true}
-[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - page.customHeaders:  - {}
-[INFO  - 2016-11-10T10:10:22.233Z] Session [e4052c50-a72d-11e6-86f5-ef69ed71feda] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"}
-[INFO  - 2016-11-10T10:10:22.233Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e4052c50-a72d-11e6-86f5-ef69ed71feda
-18:10:22.262 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, name=App E2e, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]]
-18:10:22.273 INFO - Executing: [get: http://localhost:8080])
-18:10:42.547 INFO - Done: [get: http://localhost:8080]
-18:10:42.562 INFO - Executing: [find elements: By.cssSelector: #app])
-18:10:42.584 INFO - Done: [find elements: By.cssSelector: #app]
-18:10:42.587 INFO - Executing: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (e4052c50-a72d-11e6-86f5-ef69ed71feda)] -> css selector: #app]])
-18:10:42.602 INFO - Done: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (e4052c50-a72d-11e6-86f5-ef69ed71feda)] -> css selector: #app]]
-18:10:42.608 INFO - Executing: [find elements: By.cssSelector: css selector])
-18:10:42.834 INFO - Done: [find elements: By.cssSelector: css selector]
-18:10:42.847 INFO - Executing: [delete session: 58839274-cd39-4b4f-9265-43d0a84d6815])
-[INFO  - 2016-11-10T10:10:42.853Z] ShutdownReqHand - _handle - About to shutdown
-18:10:43.179 INFO - Done: [delete session: 58839274-cd39-4b4f-9265-43d0a84d6815]
+18:27:08.726 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+18:27:08.726 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+18:27:08.727 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
+18:27:08.727 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
+18:27:08.774 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+18:27:08.774 INFO - Selenium Server is up and running
+18:27:10.242 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]])
+18:27:10.250 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]
+18:27:10.257 INFO - executable: /usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs
+18:27:10.257 INFO - port: 32694
+18:27:10.257 INFO - arguments: [--ignore-ssl-errors=true, --webdriver=32694, --webdriver-logfile=/Users/ray/projects/vue-grid/phantomjsdriver.log]
+18:27:10.257 INFO - environment: {}
+[INFO  - 2016-11-11T10:27:11.488Z] GhostDriver - Main - running on port 32694
+[INFO  - 2016-11-11T10:27:11.811Z] Session [68304cf0-a7f9-11e6-8a7f-f38b2479552a] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36","webSecurityEnabled":true}
+[INFO  - 2016-11-11T10:27:11.811Z] Session [68304cf0-a7f9-11e6-8a7f-f38b2479552a] - page.customHeaders:  - {}
+[INFO  - 2016-11-11T10:27:11.811Z] Session [68304cf0-a7f9-11e6-8a7f-f38b2479552a] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"}
+[INFO  - 2016-11-11T10:27:11.811Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 68304cf0-a7f9-11e6-8a7f-f38b2479552a
+18:27:11.838 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, phantomjs.binary.path=/usr/local/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, browserName=phantomjs, javascriptEnabled=true, phantomjs.cli.args=[--ignore-ssl-errors=true], platform=ANY}]]
+18:27:16.062 INFO - Executing: [get: http://localhost:8080])
+18:27:34.227 INFO - Done: [get: http://localhost:8080]
+18:27:34.235 INFO - Executing: [find elements: By.cssSelector: #app])
+18:27:34.260 INFO - Done: [find elements: By.cssSelector: #app]
+18:27:34.264 INFO - Executing: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (68304cf0-a7f9-11e6-8a7f-f38b2479552a)] -> css selector: #app]])
+18:27:34.279 INFO - Done: [is displayed: 0 [[PhantomJSDriver: phantomjs on MAC (68304cf0-a7f9-11e6-8a7f-f38b2479552a)] -> css selector: #app]]
+18:27:34.299 INFO - Executing: [find element: By.cssSelector: input[type="search"]])
+18:27:34.311 INFO - Done: [find element: By.cssSelector: input[type="search"]]
+18:27:34.315 INFO - Executing: [send keys: 1 [[PhantomJSDriver: phantomjs on MAC (68304cf0-a7f9-11e6-8a7f-f38b2479552a)] -> css selector: input[type="search"]], [大, 数, 据]])
+18:27:34.370 INFO - Done: [send keys: 1 [[PhantomJSDriver: phantomjs on MAC (68304cf0-a7f9-11e6-8a7f-f38b2479552a)] -> css selector: input[type="search"]], [大, 数, 据]]
+18:27:52.671 INFO - Executing: [find element: By.cssSelector: a[title~="大数据"]])
+[ERROR - 2016-11-11T10:27:52.896Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1478860072876
+
+  phantomjs://platform/console++.js:263 in error
+18:28:03.910 WARN - Exception thrown
+org.openqa.selenium.NoSuchElementException: {"errorMessage":"Unable to find element with css selector 'a[title~=\"大数据\"]'","request":{"headers":{"Accept-Encoding":"gzip,deflate","Connection":"Keep-Alive","Content-Length":"58","Content-Type":"application/json; charset=utf-8","Host":"localhost:32694","User-Agent":"Apache-HttpClient/4.5.1 (Java/1.8.0_101)"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"css selector\",\"value\":\"a[title~=\\\"大数据\\\"]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/68304cf0-a7f9-11e6-8a7f-f38b2479552a/element"}}
+Command duration or timeout: 337 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'liangruikundeiMac.local', ip: '192.168.1.3', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.phantomjs.PhantomJSDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, handlesAlerts=false, databaseEnabled=false, version=2.1.1, platform=MAC, browserConnectionEnabled=false, proxy={proxyType=direct}, nativeEvents=true, acceptSslCerts=false, driverVersion=1.2.0, phantomjs.page.settings.userAgent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36, locationContextEnabled=false, webStorageEnabled=false, browserName=phantomjs, takesScreenshot=true, driverName=ghostdriver, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 68304cf0-a7f9-11e6-8a7f-f38b2479552a
+*** Element info: {Using=css selector, value=a[title~="大数据"]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:492)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:103)
+	at com.sun.proxy.$Proxy1.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:188)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.openqa.selenium.remote.ScreenshotException: Screen shot has been taken
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'liangruikundeiMac.local', ip: '192.168.1.3', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.1', java.version: '1.8.0_101'
+Driver info: driver.version: EventFiringWebDriver
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:138)
+	... 19 more
+Caused by: org.openqa.selenium.NoSuchElementException: {"errorMessage":"Unable to find element with css selector 'a[title~=\"大数据\"]'","request":{"headers":{"Accept-Encoding":"gzip,deflate","Connection":"Keep-Alive","Content-Length":"58","Content-Type":"application/json; charset=utf-8","Host":"localhost:32694","User-Agent":"Apache-HttpClient/4.5.1 (Java/1.8.0_101)"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"css selector\",\"value\":\"a[title~=\\\"大数据\\\"]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/68304cf0-a7f9-11e6-8a7f-f38b2479552a/element"}}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'liangruikundeiMac.local', ip: '192.168.1.3', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.1', java.version: '1.8.0_101'
+Driver info: driver.version: unknown
+18:28:04.377 INFO - Executing: [take screenshot])
+18:28:33.981 INFO - Done: [take screenshot]
+18:28:34.018 INFO - Executing: [delete session: a1360dea-8105-4480-8000-4d82a75dd8fc])
+[INFO  - 2016-11-11T10:28:34.025Z] ShutdownReqHand - _handle - About to shutdown
+18:28:35.098 INFO - Done: [delete session: a1360dea-8105-4480-8000-4d82a75dd8fc]

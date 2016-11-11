@@ -53,9 +53,9 @@ app.use(devMiddleware)
 // compilation error display
 app.use(hotMiddleware)
 
-app.get('/api/books', function (req, res) {
-  return require('../src/fixtures/items.json')
-})
+// app.get('/api/books', function (req, res) {
+//   return require('../src/fixtures/items.json')
+// })
 
 
 // serve pure static assets
@@ -69,5 +69,5 @@ module.exports = app.listen(port, function (err) {
   }
   var uri = 'http://localhost:' + port
   console.log('Listening at ' + uri + '\n')
-  //opn(uri)
+  // opn(uri)
 })
