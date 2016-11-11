@@ -31,14 +31,13 @@ module.exports = {
       "webdriver.chrome.driver": require('chromedriver').path
     }
   },
-  //
-  // "test_runner": {
-  //   "type":"mocha",
-  //   "option":{
-  //
+  // "test_runner" : {
+  //   "type" : "mocha",
+  //   "options" : {
+  //     "ui" : "bdd",
+  //     "reporter" : "list"
   //   }
   // },
-  //
   "test_settings": {
     "default": {
       "selenium_port": 4444,
@@ -50,7 +49,7 @@ module.exports = {
         path: 'test/e2e/screenshots/default'
       },
       "globals": {
-        "devServerURL": "http://localhost:" + (process.env.PORT || config.dev.port)
+        "rootURL": "http://localhost:" + (process.env.PORT || config.dev.port)
       }
     },
 
@@ -65,20 +64,20 @@ module.exports = {
       }
     },
 
-    // "chrome": {
-    //   "desiredCapabilities": {
-    //     "browserName": "chrome",
-    //     "javascriptEnabled": true,
-    //     "acceptSslCerts": true
-    //   }
-    // },
-    //
-    // "firefox": {
-    //   "desiredCapabilities": {
-    //     "browserName": "firefox",
-    //     "javascriptEnabled": true,
-    //     "acceptSslCerts": true
-    //   }
-    // }
+    "chrome": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+
+    "firefox": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    }
   }
 }

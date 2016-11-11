@@ -11,10 +11,17 @@
       <div class="uk-grid uk-margin-large-bottom">
         <div class="uk-width-3-4">
           <div class="uk-grid">
-            <div class="uk-width-1-3">
+            <div class="uk-width-2-4">
                             <span class="uk-text-large uk-text-muted">共有<span
-                              class="uk-text-bold">{{ bookFilter.length }}</span>本图书</span></div>
-            <div class="uk-width-2-3">
+                              class="uk-text-bold">{{ bookFilter.length }}</span>本图书
+                            <span v-if="hasSelection">
+                              &nbsp;已选中<span
+                              class="uk-text-bold">{{ selection.length }}</span>本图书
+                            </span>
+                            </span>
+            </div>
+
+            <div class="uk-width-2-4">
               <div class="uk-form">
                 <div class="uk-form-icon">
                   <i class="uk-icon-search"></i>
@@ -49,21 +56,21 @@
         <tr>
           <th class="uk-text-center disable-select"
               @click="sortBy('name')">书名
-                        <span :class="{
+            <span :class="{
                             'uk-icon-sort-asc': direction=='asc',
                             'uk-icon-sort-desc': direction=='desc'
                         }" v-if="sortingKey=='name'"></span>
           </th>
           <th class="uk-text-center uk-width-1-6 disable-select"
               @click="sortBy('category')">类别
-                        <span :class="{
+            <span :class="{
                             'uk-icon-sort-asc': direction=='asc',
                             'uk-icon-sort-desc': direction=='desc'
                         }" v-if="sortingKey=='category'"></span>
           </th>
           <th class="uk-text-center uk-width-1-6 disable-select"
               @click="sortBy('published')">出版日期
-                        <span :class="{
+            <span :class="{
                             'uk-icon-sort-asc': direction=='asc',
                             'uk-icon-sort-desc': direction=='desc'
                         }" v-if="sortingKey=='published'"></span>
@@ -75,6 +82,7 @@
           <td class="uk-form uk-grid">
             <div class="uk-width-1-10">
               <input type="checkbox"
+                     :data-isbn="book.isbn"
                      @change="selectChanged(book,$event)"
                      class="uk-margin-right cb-book"/>
             </div>
@@ -228,11 +236,11 @@
     },
     created () {
       this.bookService = this.$resource('/api/books')
-//            this.bookService.query({page: 1, size: 20}).then((res)=> {
-//                this.books = res.body
-//            }, (error)=> {
-//                console.log(error)
-//            })
+//      this.bookService.query({page: 1, size: 20}).then(res => {
+//        this.books = res.body
+//      }, (error) => {
+//        console.log(error)
+//      })
     },
     mounted () {
       // console.log(this.$refs)
@@ -281,16 +289,16 @@
         // 将 book.selected 绑定到checkbox上而同时用change事件检测哪
         // 些 book.selected 为true 因为 `selected` 在book上是不存在的
         // 而正因此我们得到一个思路,可以为对象增加一些辅助属性
+
         if (e.target.checked) {
           this.selection.push(book.isbn)
           this.selection = _.uniq(this.selection)
         } else {
-          this.selection = _.reject(this.selection, b => book.isbn === b.isbn)
+          this.selection = _.reject(this.selection, b => book.isbn === b)
 
           // 这是一个逻辑错误
           // this.selection = this.selection.filter((b)=> b.isbn == book.isbn)
         }
-        console.log(this.selection)
       },
       newBook () {
         this.current = {}
@@ -315,9 +323,11 @@
         // this.books.push(this.current)
       },
       removeBooks (book) {
-        // UIkit.modal.alert('真的要删除所选中的图书吗?');
         // this.books = this.books.filter(x =>x != book)
-        this.$ui.alert('真的要删除所选中的图书吗?')
+        this.$ui.confirm('真的要删除所选中的图书吗?', () => {
+          this.selection = []
+          // console.log(this.selection)
+        })
       }
     },
     components: {Modal, HtmlEditor}

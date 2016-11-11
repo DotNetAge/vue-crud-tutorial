@@ -10,11 +10,17 @@ import 'uikit/dist/css/components/htmleditor.css'
 import 'uikit/dist/css/components/htmleditor.gradient.css'
 
 export default {
-  template: `<div>
-                  <textarea rows="20"
-                            ref="editor"
-                            >{{ value }}</textarea></div>`,
-  props: ['value'],
+  // 如果这样写就会出现 模板未被编译的异常，需要调用 compiled 方法才能使用
+  // template: `<div>
+  //                 <textarea rows="20"
+  //                           ref="editor"
+  //                           >{{ value }}</textarea></div>`,
+  props: {
+    'value': {
+      type: String,
+      default: ''
+    }
+  },
   mounted () {
     // Vue 2.0 的组件只能单向赋值,以往可以通过两路绑定的做法已经失效
     // 所以只能通过事件将组件内部的数据变化暴露给父组件
@@ -23,11 +29,21 @@ export default {
       mode: 'tab'
     })
     var self = this
+    console.log(this.$refs.editor)
     window.UIkit.$(this.$refs.editor).on('input', () => {
       const _val = htmlEditor.editor.getValue()
       if (_val !== self.value) {
         this.$emit('change', _val)
       }
     })
+  },
+  render (h) {
+    return (
+      <div>
+        <textarea rows="20" ref="editor">
+          { this.value }
+        </textarea>
+      </div>
+    )
   }
 }

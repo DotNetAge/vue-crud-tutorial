@@ -5,11 +5,11 @@
 
   <testsuite name="App.e2e"
     errors="0" failures="1" hostname="" id="" package="App.e2e" skipped="0"
-    tests="1" time="22.31" timestamp="Tue, 08 Nov 2016 16:17:07 GMT">
+    tests="1" time="54.48" timestamp="Thu, 10 Nov 2016 14:59:07 GMT">
   
-    <testcase name="图书记录多选测试" time="22.31" assertions="2">
+    <testcase name="图书记录多选测试" time="54.48" assertions="2">
 
-      <failure message="Testing if element &lt;.cb-book:first&gt; is present.">    at Object._ [as 图书记录多选测试] (/Users/Ray/Projects/vue-grid/test/e2e/specs/App.e2e.js:15:15)</failure>
+      <failure message=".cb-book">    at Object._ [as 图书记录多选测试] (/Users/Ray/Projects/vue-grid/test/e2e/specs/App.e2e.js:24:20)</failure>
 
     
     </testcase>

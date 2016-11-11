@@ -1,0 +1,14 @@
+describe('图书CURD', () => {
+  it('筛选数据', (client)=> {
+    debugger
+    const devServer = client.globals.devServerURL
+    const terms = '大数据'
+    client.url(devServer)
+      .waitForElementVisible('#app', 5000)
+      .setValue('input[type="search"]', [terms, client.Keys.Enter])
+      .assert.elementPresent(`a[title*="${terms}"]`)
+      .assert.elementNotPresent(`:not(a[title*="${terms}"])`)
+      .end()
+  })
+})
+
