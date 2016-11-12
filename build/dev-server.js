@@ -7,7 +7,8 @@ var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
-
+var mocks = require('./mocks')
+var bodyParser = require('body-parser')
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // Define HTTP proxies to your custom API backend
@@ -16,6 +17,7 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
+
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -52,12 +54,9 @@ app.use(devMiddleware)
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware)
-
-var mockData = require('../src/fixtures/items.json')
-
-app.get('/api/books', function (req, res) {
-  return mockData
-})
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
+app.use('/api', mocks)
 
 
 // serve pure static assets

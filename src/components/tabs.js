@@ -46,37 +46,39 @@ export const Tabs = {
       return node
     })
   },
-  template: `<div>
-    <ul class="uk-tab"
-        data-uk-tab="{ active: 0,connect: '#tabContents'}">
-        <li v-for="tab in tabItems">
-            <a href="">{ tab.label }</a>
-        </li>
-    </ul>
-    <ul class="uk-switcher uk-margin"
-        id="tabContents">
-        <slot></slot>
-    </ul>
-</div>`
-  // , render (h) {
-  //     return (
-  //         <div>
-  //             <ul class="uk-tab"
-  //                 data-uk-tab="{ active:0,connect:'#tabContents'}">
-  //                 {
-  //                     this.tabItems.map(tab =>(
-  //                             <li>
-  //                                 <a href="">{ tab.label }</a>
-  //                             </li>
-  //                         )
-  //                     )
-  //                 }
-  //             </ul>
-  //             <ul class="uk-switcher uk-margin"
-  //                 id="tabContents">
-  //                 { this.tabItems }
-  //             </ul>
-  //         </div>
-  //     )
-  // }
+// 以下代码会产生: '[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
+// (found in component <Tabs>)'  的警告
+//   template: `<div>
+//     <ul class="uk-tab"
+//         data-uk-tab="{ active: 0,connect: '#tabContents'}">
+//         <li v-for="tab in tabItems">
+//             <a href="">{ tab.label }</a>
+//         </li>
+//     </ul>
+//     <ul class="uk-switcher uk-margin"
+//         id="tabContents">
+//         <slot></slot>
+//     </ul>
+// </div>`
+  render (h) {
+    return (
+      <div>
+        <ul class="uk-tab"
+            data-uk-tab="{ active:0,connect:'#tabContents'}">
+          {
+            this.tabItems.map(tab => (
+                <li>
+                  <a href="">{ tab.label }</a>
+                </li>
+              )
+            )
+          }
+        </ul>
+        <ul class="uk-switcher uk-margin"
+            id="tabContents">
+          { this.tabItems }
+        </ul>
+      </div>
+    )
+  }
 }

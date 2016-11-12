@@ -13,14 +13,13 @@
           <div class="uk-grid">
             <div class="uk-width-2-4">
                             <span class="uk-text-large uk-text-muted">共有<span
-                              class="uk-text-bold">{{ bookFilter.length }}</span>本图书
+                              class="uk-text-bold">{{ totalBooks }}</span>本图书
                             <span v-if="hasSelection">
                               &nbsp;已选中<span
                               class="uk-text-bold">{{ selection.length }}</span>本图书
                             </span>
                             </span>
             </div>
-
             <div class="uk-width-2-4">
               <div class="uk-form">
                 <div class="uk-form-icon">
@@ -28,7 +27,7 @@
                   <input type="search"
                          class="search-box uk-form-width-large"
                          placeholder="请输入您要筛选的书名"
-                         @key.enter="filterByBookName"
+                         @keyup.enter="filterByBookName"
                          v-model="terms"/></div>
               </div>
             </div>
@@ -43,7 +42,6 @@
                     v-if="hasSelection"
             ><i class="uk-icon-trash"></i>
             </button>
-
             <button class="uk-button uk-button-primary"
                     @click.prevent="newBook">
               <i class="uk-icon-plus"></i> <span>添加</span>
@@ -78,7 +76,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="book in bookFilter" :data-isbn="book.isbn">
+        <tr v-for="book in books" :data-isbn="book.isbn">
           <td class="uk-form uk-grid">
             <div class="uk-width-1-10">
               <input type="checkbox"
@@ -90,6 +88,7 @@
               <a class="uk-h3 book-name"
                  href="javascript:void(0)"
                  :title="book.name"
+                 data-uk-tooltip="{pos:'top'}"
                  @click.prevent="editBook(book)">{{ book.name }}</a>
               <p class="authors uk-text-muted uk-text-small">{{ book.authors | join }}</p>
             </div>
@@ -99,108 +98,19 @@
         </tr>
         </tbody>
       </table>
+      <div class="uk-margin-top uk-text-center">
+        <pager v-if="totalBooks"
+               :items="totalBooks"
+               :size="pageSize"
+               :current="currentPage"
+               @pagechanged="pageChanged"></pager>
+      </div>
       <modal ref="modal"
              :headerText="statusText"
              @dialogClose="current=undefined">
-        <form class="uk-form uk-form-horizontal"
-              v-if="current">
-          <div class="uk-container uk-container-center">
-            <ul class="uk-tab" data-uk-tab="{active:0,connect:'#tabContents'}">
-              <li><a href="">通用</a></li>
-              <li><a href="">摘要</a></li>
-            </ul>
-            <ul class="uk-switcher uk-margin" id="tabContents">
-              <li>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-name-field">书名</label>
-                  <div class="uk-form-controls">
-                    <input id="book-name-field"
-                           class="uk-form-width-large"
-                           autofocus="autofocus"
-                           v-model="current.name"/>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-isbn-field">书号</label>
-                  <div class="uk-form-controls">
-                    <input id="book-isbn-field"
-                           class="uk-form-width-large"
-                           v-model="current.isbn"/>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-price-field">售价</label>
-                  <div class="uk-form-controls">
-                    <input id="book-price-field"
-                           class="uk-form-width-large"
-                           type="number"
-                           min="0.0"
-                           step="any"
-                           v-model="current.price"/>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-category-field">类别</label>
-                  <div class="uk-form-controls">
-                    <input id="book-category-field"
-                           class="uk-form-width-large"
-                           v-model="current.category"/>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-published-field">出版日期</label>
-                  <div class="uk-form-controls">
-                    <input id="book-published-field"
-                           class="uk-form-width-large"
-                           v-model="current.published"
-                           ref="published"
-                    />
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label">&nbsp;</label>
-                  <div class="uk-form-controls">
-                    <label>
-                      <input type="checkbox"
-                             v-model="is_published"/> 上市销售
-                    </label>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-pages-field">页数</label>
-                  <div class="uk-form-controls">
-                    <input id="book-pages-field"
-                           class="uk-form-width-large"
-                           type="number"
-                           min="100"
-                           v-model="current.pages"/>
-                  </div>
-                </div>
-                <div class="uk-form-row">
-                  <label class="uk-form-label"
-                         for="book-authors-field">作者</label>
-                  <div class="uk-form-controls">
-                    <input id="book-authors-field"
-                           class="uk-form-width-large"
-                           v-model="authors"/>
-                  </div>
-                </div>
-
-              </li>
-              <li>
-                <html-editor :value="current.summary"
-                             @change="current.summary = $event"></html-editor>
-
-              </li>
-            </ul>
-          </div>
-        </form>
+        <book-edit-form :book="current"
+                        ref="form">
+        </book-edit-form>
         <div slot="footer"
              class="uk-modal-footer uk-text-right">
           <button class="uk-button uk-button-primary"
@@ -217,9 +127,11 @@
 </template>
 <script type="text/ecmascript-6">
   import './assets/site.less'
-  import BookData from './fixtures/items.json'
+  // import BookData from './fixtures/items.json'
   import Modal from './components/dialog.vue'
-  import HtmlEditor from './components/htmleditor'
+  import './components/tooltips'
+  import Pager from './components/pager'
+  import BookEditForm from './components/book-editform.vue'
   import _ from 'lodash'
 
   export default {
@@ -229,18 +141,17 @@
         sortingKey: '',
         direction: 'asc',
         current: undefined,
+        currentPage: 0, // page 是 0 Base 的
+        totalBooks: 0,
+        pageSize: 5,
         statusText: '',
-        books: BookData,
+        books: [],
         selection: []
       }
     },
     created () {
       this.bookService = this.$resource('/api/books')
-//      this.bookService.query({page: 1, size: 20}).then(res => {
-//        this.books = res.body
-//      }, (error) => {
-//        console.log(error)
-//      })
+      this.fetchBooks()
     },
     mounted () {
       // console.log(this.$refs)
@@ -248,28 +159,9 @@
       // UIkit.datepicker(this.$refs.published)
     },
     computed: {
-      is_published: {
-        get () {
-          return this.current.status === '上市销售'
-        },
-        set (val) {
-          this.current.status = val ? '上市销售' : ''
-        }
-      },
-      authors: {
-        get () {
-          return this.current.authors ? this.current.authors.join(',') : ''
-        },
-        set (val) {
-          this.current.authors = val.split(',')
-        }
-      },
       bookFilter () {
         return this.terms.length ? this.books.filter(x => x.name.indexOf(this.terms) > -1) : this.books
       },
-//            selectedBooks () {
-//                return this.books.filter((book)=> this.selections.find((b)=>book.isbn == b.isbn) != undefined)
-//            },
       hasSelection () {
         return this.selection.length > 0
       }
@@ -284,6 +176,22 @@
         console.log(e)
       },
       filterByBookName () {
+        this.fetchBooks(1, this.terms)
+      },
+      pageChanged (pageIndex) {
+        this.fetchBooks(pageIndex, this.terms)
+      },
+      fetchBooks (pageIndex = 1, filter = '') {
+        return this.bookService.query({page: pageIndex, size: this.pageSize, filter: filter})
+          .then((res) => {
+            this.books = res.body.data
+            this.totalBooks = res.body.total_records
+          }, (error) => {
+            console.log(error)
+          })
+      },
+      refreshBooks () {
+        return this.fetchBooks(this.currentPage, this.terms)
       },
       selectChanged (book, e) {
         // 将 book.selected 绑定到checkbox上而同时用change事件检测哪
@@ -319,17 +227,22 @@
         this.books = _.orderBy(this.books, key, this.direction)
       },
       save () {
-        console.log(this.current.summary)
+        // console.log(this.current.summary)
         // this.books.push(this.current)
+        this.bookService.save(this.current)
+        this.refreshBooks()
       },
-      removeBooks (book) {
+      removeBooks () {
         // this.books = this.books.filter(x =>x != book)
         this.$ui.confirm('真的要删除所选中的图书吗?', () => {
-          this.selection = []
-          // console.log(this.selection)
+          this.$http.delete('/api/books', {body: this.selection})
+            .then((res) => {
+              this.selection = []
+              this.refreshBooks()
+            })
         })
       }
     },
-    components: {Modal, HtmlEditor}
+    components: {Modal, Pager, BookEditForm}
   }
 </script>

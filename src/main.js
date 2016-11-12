@@ -2,10 +2,25 @@ import Vue from 'vue'
 import UIKit from './vue-uikit'
 import VueResource from 'vue-resource'
 import App from './App.vue'
-// import Editor from './Editor.vue'
+import VueValidator from 'vue-validator'
 
 Vue.use(UIKit)
 Vue.use(VueResource)
+Vue.use(VueValidator)
+
+Vue.http.interceptors.push((request, next) => {
+  if (request.url.indexOf('/api/') > -1) {
+    let modal = window.UIkit.modal.blockUI(`<div class="uk-modal-spinner"></div>
+<p class="uk-text-center">玩命加载中...</p>`, {
+      center: true
+    })
+
+    next((response) => {
+      modal.hide()
+      return response
+    })
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

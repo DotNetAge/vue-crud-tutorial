@@ -15,6 +15,7 @@ export default {
   //                 <textarea rows="20"
   //                           ref="editor"
   //                           >{{ value }}</textarea></div>`,
+  name: 'HtmlEditor',
   props: {
     'value': {
       type: String,
@@ -29,8 +30,7 @@ export default {
       mode: 'tab'
     })
     var self = this
-    console.log(this.$refs.editor)
-    window.UIkit.$(this.$refs.editor).on('input', () => {
+    this.$ui.$(this.$refs.editor).on('input', () => {
       const _val = htmlEditor.editor.getValue()
       if (_val !== self.value) {
         this.$emit('change', _val)
