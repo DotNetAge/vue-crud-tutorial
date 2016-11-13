@@ -16,7 +16,7 @@ module.exports = {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'vue': 'vue/dist/vue.common.js',
+      'vue': 'vue/dist/vue.js',
       'uikit-css$': 'uikit/dist/css/uikit.css',
       'uikit-theme$': 'uikit/dist/css/uikit.almost-flat.css',
       'src': path.resolve(__dirname, '../src'),

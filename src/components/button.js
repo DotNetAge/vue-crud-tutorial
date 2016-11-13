@@ -1,5 +1,5 @@
 export default {
-  name: 'UIButton',
+  name: 'UiButton',
   props: {
     text: {
       type: String,
@@ -29,7 +29,7 @@ export default {
       default: ''
     }
   },
-  render () {
+  render (h) {
     const data = {
       class: {
         'uk-button': true,
@@ -44,15 +44,29 @@ export default {
         'uk-button-large': this.size === 'large'
       }
     }
-
+    let clickHandler = (e) => {
+      e.preventDefault()
+      this.$emit('click')
+    }
+    const cssIcon = 'uk-icon-' + this.icon
     const _when = (condition, fn) => {
       if (condition) {
         return fn
       }
     }
-    return (<button disabled={ this.disabled } {...data}>
-        { _when(this.icon, (<i class={ 'uk-icon-' + this.icon }></i>))}
-        { _when(this.text, (<span>{ this.text }</span>)) }
-      </button>)
+    return (
+      <button disabled={ this.disabled }
+              on-click={ clickHandler }
+              {...data}>
+      { _when(this.icon, (
+        <i class={cssIcon}>
+        </i>)
+      )
+      }
+      { _when(this.text, (
+        <span>&nbsp;&nbsp;{ this.text }</span>)
+      )
+      }
+    </button>)
   }
 }

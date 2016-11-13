@@ -1,4 +1,4 @@
-import {Tabs, Tab} from '../../../src/components/tabs'
+import {Tabs, Tab} from 'components/tabs'
 import {getVM} from '../helpers'
 
 describe('tabs', () => {

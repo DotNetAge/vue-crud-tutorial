@@ -6,7 +6,7 @@ export default {
         <div class="uk-container-center">
           <h1 class="uk-heading-large">{ this.header }
             {
-              this.subHeader || (<small>{ this.subHeader }</small>)
+              this.subHeader ? (<small>{ this.subHeader }</small>) : (<small></small>)
             }
           </h1>
         </div>

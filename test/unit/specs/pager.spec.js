@@ -1,6 +1,6 @@
-import UIKit from '../../../src/vue-uikit'
+import UIKit from 'src/vue-uikit'
 import Vue from 'vue'
-import Pager from '../../../src/components/pager'
+import Pager from 'components/pager'
 import {getVM} from '../helpers'
 
 Vue.use(UIKit)
@@ -15,8 +15,6 @@ describe('pager', () => {
         return Math.ceil(this.items / this.size)
       }
     }
-
-
     // 1. sinon 是由 Karma 将 sinon-chai 配置到当前的mocha环境内的
     // 所以此处无需引入就可以直接调用
     // 2. 触发pagechanged 我们就要在 render 语法中加入 'on-' 的前缀引用事件
