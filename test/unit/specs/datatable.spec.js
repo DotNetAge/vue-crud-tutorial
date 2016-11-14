@@ -1,41 +1,62 @@
-import Vue from 'vue'
 import DataTable from 'components/datatable'
 import Field from 'components/field'
-import FieldVal from 'components/fieldval'
-
+import {getVM} from '../helpers'
+import Vue from 'vue'
+import BooksData from 'src/fixtures/items.json'
 describe('datatable', () => {
   it('应该正确输出列', () => {
-    let data = {
-      items: [
-        {id: 1, title: 'ABCDEFG', price: 29.0, tag: 'kkk'},
-        {id: 2, title: 'asdfasdf', price: 19.0, tag: 'ee'},
-        {id: 3, title: 'wuyturty', price: 24.0, tag: 'bbb'},
-        {id: 4, title: 'ABCDasdfasdfEFG', price: 2, tag: 'cc'},
-        {id: 5, title: 'ABCDwqerwEFG', price: 59.0, tag: 'kkk'},
-        {id: 6, title: 'tryutryur', price: 27.0, tag: 'aa'},
-        {id: 7, title: 'ABCrtuturtyDEFG', price: 9.0, tag: 'ee'}
-      ]
-    }
     // '[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
+
+    let fields = [
+      {name: 'name', title: '书名'},
+      {name: 'category', title: '分类'},
+      {name: 'published', title: '发布日期'}
+    ]
+
     let TestHolder = Vue.extend({
       template: `<div><data-table :data-items="items"
-                      :data-fields="[
-                        {name: 'title', title: '标题'},
-                        {name: 'price', title: '价格'},
-                        {name: 'tag', title: '标签'}
-                      ]">
-            <field name="title"><a>
-                <field-val name="title"></field-val></a>
-                <field-val name="tag"></field-val>
+                      :data-fields="fields">
+            <field name="name" inline-template>
+               <div>
+                  <a href="javascript:void(0);">
+                     {{ item.name }}
+                  </a>
+                  <p>
+                    {{ item.isbn }}
+                  </p>
+                </div>
             </field>
           </data-table></div>`,
-      components: {DataTable, Field, FieldVal}
+      components: {DataTable, Field}
     })
 
     let vm = new TestHolder({
       el: document.createElement('div'),
-      data: data
+      data: {
+        items: BooksData,
+        fields: fields
+      }
     })
+
+    // let vm = getVM(h => (<div>
+    //   <data-table data-items={BooksData}
+    //               data-fields={fields}>
+    //     <field name="name">
+    //       <a href="javascript:void(0);">
+    //         <field-val name="name">
+    //         </field-val>
+    //       </a>
+    //       <p>
+    //         <field-val name="isbn">
+    //         </field-val>
+    //       </p>
+    //     </field>
+    //     <field name="category" class="small">
+    //     </field>
+    //     <field name="published" class="published">
+    //     </field>
+    //   </data-table>
+    // </div>), {DataTable, Field, FieldVal})
 
     console.log(vm.$el)
   })

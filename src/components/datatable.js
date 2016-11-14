@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Field from './field'
 import FieldVal from './fieldval'
 
@@ -16,6 +15,10 @@ export default {
     keyField: {
       type: String,
       default: 'id'
+    },
+    autoGenerate: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -38,12 +41,35 @@ export default {
     let _fs = this.fields
 
     let cellNodes = item => this.dataFields.map(df => {
+
       if (_fs[df.name]) {
-        _fs[df.name].componentOptions.propsData.item = item
-        return _fs[df.name]
-      } else {
-        let Ctor = Vue.extend(Field)
-        return new Ctor({propsData: {name: df.name, item: item}})
+        // console.log(df.name)
+        // debugger
+
+        let vnode = _fs[df.name]
+        let cloned = new VNode(
+          vnode.tag,
+          vnode.data,
+          vnode.children,
+          vnode.text,
+          vnode.elm,
+          vnode.ns,
+          vnode.context,
+          vnode.componentOptions
+        )
+        // newNode.componentOptions.propsData.item = item
+        cloned.isStatic = vnode.isStatic
+        cloned.key = vnode.key
+        cloned.isCloned = true
+        cloned.componentOptions.propsData.item = item
+        return cloned
+        // _fs[df.name].componentOptions.propsData.item = item
+        // return _fs[df.name]
+      }
+      else {
+        // let Ctor = Vue.extend(Field)
+        // return new Ctor({propsData: {name: df.name, item: item}})
+        return createElement(Field, {props: {name: df.name, item: item}})
       }
     })
     let rowNodes = this.dataItems.map(item => createElement('tr', {}, cellNodes(item)))
