@@ -1,10 +1,6 @@
 export default {
-  name: 'UiButton',
+  name: 'UkButton',
   props: {
-    text: {
-      type: String,
-      default: 'Button'
-    },
     active: {
       type: Boolean,
       default: false
@@ -63,10 +59,7 @@ export default {
         </i>)
       )
       }
-      { _when(this.text, (
-        <span>&nbsp;&nbsp;{ this.text }</span>)
-      )
-      }
+      { this.$slots.default }
     </button>)
   }
 }
