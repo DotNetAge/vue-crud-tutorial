@@ -1,21 +1,58 @@
 import DataTable from 'components/datatable'
-import Field from 'components/field'
-import {getVM} from '../helpers'
+// import {getVM} from '../helpers'
 import Vue from 'vue'
 import BooksData from 'src/fixtures/items.json'
+import _ from 'lodash'
+
+let fields = [
+  {name: 'name', title: '书名'},
+  {name: 'category', title: '分类'},
+  {name: 'published', title: '发布日期'}
+]
+
+const compileComponent = (tmpl, exts) => {
+  let defaults = {
+    template: tmpl,
+    components: {DataTable}
+  }
+
+  let TestHolder = Vue.extend(exts ? _.extend(defaults, exts) : defaults)
+
+
+  return new TestHolder({
+    el: document.createElement('div'),
+    data: {
+      items: BooksData,
+      fields: fields
+    }
+  })
+}
+
 describe('datatable', () => {
-  it('应该正确输出列', () => {
-    // '[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
 
-    let fields = [
-      {name: 'name', title: '书名'},
-      {name: 'category', title: '分类'},
-      {name: 'published', title: '发布日期'}
-    ]
-
-    let TestHolder = Vue.extend({
-      template: `<div><data-table :data-items="items"
+  xit('应该自动根据输入数据行与列定义输出表结构', ()=> {
+    let vm = compileComponent(`<div>
+          <data-table :data-items="items"
                       :data-fields="fields">
+          </data-table></div>`)
+    expect(vm.$el.querySelectorAll('tbody>tr').length).to.eqls(BooksData.length)
+    expect(vm.$el.querySelectorAll('thead>tr>th').length).to.eqls(3)
+  })
+
+  it('应该正确输出自定义列并触发排序和行选事件', () => {
+    // '[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
+    // 代表性意义:
+    // 1. 模板的外置
+    // 2. 动态组件与 inline-template
+    // 3. Render 方法
+    let sortHandler = sinon.spy()
+    let selectionChangeHandler = sinon.spy()
+
+    let vm = compileComponent(`<div>
+          <data-table :data-items="items"
+                      :data-fields="fields"
+                      @sort = "sortHandler"
+                      @selection-change="selectionChangeHandler">
             <field name="name" inline-template>
                <div>
                   <a href="javascript:void(0);">
@@ -26,39 +63,25 @@ describe('datatable', () => {
                   </p>
                 </div>
             </field>
-          </data-table></div>`,
-      components: {DataTable, Field}
-    })
-
-    let vm = new TestHolder({
-      el: document.createElement('div'),
-      data: {
-        items: BooksData,
-        fields: fields
+          </data-table></div>`, {
+      methods: {
+        sortHandler,
+        selectionChangeHandler
       }
     })
 
-    // let vm = getVM(h => (<div>
-    //   <data-table data-items={BooksData}
-    //               data-fields={fields}>
-    //     <field name="name">
-    //       <a href="javascript:void(0);">
-    //         <field-val name="name">
-    //         </field-val>
-    //       </a>
-    //       <p>
-    //         <field-val name="isbn">
-    //         </field-val>
-    //       </p>
-    //     </field>
-    //     <field name="category" class="small">
-    //     </field>
-    //     <field name="published" class="published">
-    //     </field>
-    //   </data-table>
-    // </div>), {DataTable, Field, FieldVal})
-
     console.log(vm.$el)
+
+    expect(vm.$el.querySelectorAll('tbody>tr').length).to.eqls(BooksData.length)
+    expect(vm.$el.querySelectorAll('thead>tr>th').length).to.eqls(3)
+    expect(vm.$el.querySelectorAll('a').length).to.eqls(BooksData.length)
+
+    window.$(vm.$el.querySelectorAll('thead>tr>th')[1]).trigger('click')
+    // window.$(vm.$el.querySelectorAll('tbody>tr:first>td>input')).trigger('click')
+    expect(sortHandler).to.have.been.called
+    // expect(selectionChangeHandler).to.have.been.called
   })
+
+
 })
 

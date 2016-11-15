@@ -111,7 +111,7 @@
         <div slot="footer"
              class="uk-modal-footer uk-text-right">
           <ui-button text="保存" color="primary" @click="save"></ui-button>
-          <ui-button text="关闭" color="danger" @click="$refs.modal.close()"
+          <ui-button text="关闭" color="danger" @click="$refs.modal.close()"></ui-button>
         </div>
       </modal>
     </view-page>
