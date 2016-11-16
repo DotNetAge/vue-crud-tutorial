@@ -1,6 +1,5 @@
 <template>
   <div>
-    <validator name="validation">
       <form class="uk-form uk-form-horizontal" novalidate
             v-if="current">
         <div class="uk-container uk-container-center">
@@ -17,9 +16,7 @@
                   <input id="book-name-field"
                          class="uk-form-width-large"
                          autofocus="autofocus"
-                         v-model="current.name"
-                         :class="{'uk-form-danger':$validate.current.name.required}"
-                         v-validate="{ required: true}"/>
+                         v-model="current.name"/>
                 </div>
               </div>
               <div class="uk-form-row">
@@ -28,9 +25,8 @@
                 <div class="uk-form-controls">
                   <input id="book-isbn-field"
                          class="uk-form-width-large"
-                         :class="{'uk-form-danger':$validate.current.isbn.required}"
                          v-model="current.isbn"
-                         v-validate="{required: true}"/>
+                         />
                 </div>
               </div>
               <div class="uk-form-row">
@@ -45,15 +41,13 @@
                          v-model="current.price"/>
                 </div>
               </div>
-              <div class="uk-form-row">
-                <label class="uk-form-label"
-                       for="book-category-field">类别</label>
-                <div class="uk-form-controls">
-                  <input id="book-category-field"
-                         class="uk-form-width-large"
-                         v-model="current.category"/>
-                </div>
-              </div>
+              <form-field label="类别"
+                          name="book-category-field">
+                <input id="book-category-field"
+                       class="uk-form-width-large"
+                       v-model="current.category"/>
+              </form-field>
+
               <div class="uk-form-row">
                 <label class="uk-form-label"
                        for="book-published-field">出版日期</label>
@@ -104,12 +98,11 @@
           </ul>
         </div>
       </form>
-    </validator>
   </div>
 </template>
 <script type="text/ecmascript-6">
   import HtmlEditor from './htmleditor'
-
+  import FormField from './form-field'
   export default {
     props: ['book'],
     data () {
@@ -144,7 +137,7 @@
       }
     },
     components: {
-      HtmlEditor
+      HtmlEditor, FormField
     }
   }
 </script>

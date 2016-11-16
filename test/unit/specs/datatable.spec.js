@@ -1,5 +1,4 @@
 import DataTable from 'components/datatable'
-// import {getVM} from '../helpers'
 import Vue from 'vue'
 import BooksData from 'src/fixtures/items.json'
 import _ from 'lodash'
@@ -18,7 +17,6 @@ const compileComponent = (tmpl, exts) => {
 
   let TestHolder = Vue.extend(exts ? _.extend(defaults, exts) : defaults)
 
-
   return new TestHolder({
     el: document.createElement('div'),
     data: {
@@ -29,8 +27,7 @@ const compileComponent = (tmpl, exts) => {
 }
 
 describe('datatable', () => {
-
-  xit('应该自动根据输入数据行与列定义输出表结构', ()=> {
+  it('应该自动根据输入数据行与列定义输出表结构', () => {
     let vm = compileComponent(`<div>
           <data-table :data-items="items"
                       :data-fields="fields">
@@ -47,7 +44,6 @@ describe('datatable', () => {
     // 3. Render 方法
     let sortHandler = sinon.spy()
     let selectionChangeHandler = sinon.spy()
-
     let vm = compileComponent(`<div>
           <data-table :data-items="items"
                       :data-fields="fields"
@@ -64,14 +60,11 @@ describe('datatable', () => {
                 </div>
             </field>
           </data-table></div>`, {
-      methods: {
-        sortHandler,
-        selectionChangeHandler
-      }
-    })
-
-    console.log(vm.$el)
-
+            methods: {
+              sortHandler,
+              selectionChangeHandler
+            }
+          })
     expect(vm.$el.querySelectorAll('tbody>tr').length).to.eqls(BooksData.length)
     expect(vm.$el.querySelectorAll('thead>tr>th').length).to.eqls(3)
     expect(vm.$el.querySelectorAll('a').length).to.eqls(BooksData.length)
@@ -81,7 +74,4 @@ describe('datatable', () => {
     expect(sortHandler).to.have.been.called
     // expect(selectionChangeHandler).to.have.been.called
   })
-
-
 })
-

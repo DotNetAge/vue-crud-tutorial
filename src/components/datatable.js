@@ -62,7 +62,7 @@ export default {
         selection: this.selection,
         item: item
       })
-    },
+    }
   },
   render (createElement) {
     let _fs = this.fields
@@ -118,7 +118,6 @@ export default {
 
     // 绘制单元格
     const cellNodes = item => [toolCellNode(item)].concat(this.dataFields.map(df => {
-
       if (_fs[df.name]) {
         // 动态装配组件
         return createElement(_.extend({},
@@ -126,8 +125,7 @@ export default {
             name: 'CustomField',
             props: ['name', 'item']
           }), {props: {name: df.name, item: item}})
-      }
-      else {
+      } else {
         // let Ctor = Vue.extend(Field)
         // return new Ctor({propsData: {name: df.name, item: item}})
         return createElement('td', {}, [createElement('div', {
@@ -154,13 +152,12 @@ export default {
       createElement('thead', [createElement('tr', {}, this.dataFields.map(colHeader))]),
       createElement('tbody', [rowNodes])
     ])
-
   },
   components: {
     Field: {
       name: 'Field',
       props: ['name', 'item'],
-      render: h => createElement('span')
+      render: h => h('span')
     }
   }
 }
