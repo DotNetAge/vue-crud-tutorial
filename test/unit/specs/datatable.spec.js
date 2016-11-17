@@ -44,14 +44,16 @@ describe('datatable', () => {
     // 3. Render 方法
     let sortHandler = sinon.spy()
     let selectionChangeHandler = sinon.spy()
+    let linkHandler = sinon.spy()
     let vm = compileComponent(`<div>
           <data-table :data-items="items"
                       :data-fields="fields"
                       @sort = "sortHandler"
-                      @selection-change="selectionChangeHandler">
+                      @selection-change="selectionChangeHandler"
+                      @cell-click="linkHandler">
             <field name="name" inline-template>
                <div>
-                  <a href="javascript:void(0);">
+                  <a>
                      {{ item.name }}
                   </a>
                   <p>
@@ -61,17 +63,20 @@ describe('datatable', () => {
             </field>
           </data-table></div>`, {
             methods: {
+              linkHandler,
               sortHandler,
               selectionChangeHandler
             }
           })
+    console.log(vm.$el)
     expect(vm.$el.querySelectorAll('tbody>tr').length).to.eqls(BooksData.length)
     expect(vm.$el.querySelectorAll('thead>tr>th').length).to.eqls(3)
     expect(vm.$el.querySelectorAll('a').length).to.eqls(BooksData.length)
-
+    window.$(vm.$el.querySelectorAll('.custom-cell')[0]).trigger('click')
     window.$(vm.$el.querySelectorAll('thead>tr>th')[1]).trigger('click')
     // window.$(vm.$el.querySelectorAll('tbody>tr:first>td>input')).trigger('click')
     expect(sortHandler).to.have.been.called
+    expect(linkHandler).to.have.been.called
     // expect(selectionChangeHandler).to.have.been.called
   })
 })
