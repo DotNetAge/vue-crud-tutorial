@@ -161,6 +161,10 @@ export default {
       let result = new CustomField({propsData}).$mount()
       return (
         <div domProps-innerHTML={ result.$el.innerHTML }
+             class={{
+               'fill': true,
+               'sorting': this.sorted(field.name)
+             }}
              on-click={ () => this.$emit('cell-click', propsData) }>
         </div>
       )
