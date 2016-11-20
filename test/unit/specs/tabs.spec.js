@@ -12,6 +12,7 @@ describe('tabs', () => {
       </tab>
     </ul>), {Tab})
 
+    // console.log(vm.$el)
     expect(vm.$el.querySelectorAll('li').length).to.equal(2)
     expect(vm.$el.querySelectorAll('.tab-content').length).to.equal(2)
   })

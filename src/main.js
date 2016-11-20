@@ -2,11 +2,20 @@ import Vue from 'vue'
 import UIKit from './vue-uikit'
 import VueResource from 'vue-resource'
 import App from './App.vue'
-import VueValidator from 'vue-validator'
+// import VueValidator from 'vue-validator'
+import messages from './vee-local-fixed'
+import VeeValidate from 'vee-validate'
 
 Vue.use(UIKit)
 Vue.use(VueResource)
-Vue.use(VueValidator)
+Vue.use(VeeValidate, {
+  locale: 'zh_CN',
+  dictionary: {
+    zh_CN: {messages}
+  }
+})
+
+// Vue.use(VueValidator)
 
 Vue.http.interceptors.push((request, next) => {
   if (request.url.indexOf('/api/') > -1) {

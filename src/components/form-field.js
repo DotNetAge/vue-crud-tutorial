@@ -1,6 +1,8 @@
 export default {
   name: 'FormField',
-  props: ['name', 'label'],
+  props: [
+    'name',
+    'label'],
   render (h) {
     return (
       <div class="uk-form-row">

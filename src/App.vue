@@ -14,18 +14,18 @@
         ></search-box>
       </div>
       <div slot="buttons">
-        <ui-button id="btn-delete"
+        <uk-button id="btn-delete"
                    title="删除已选中的图书"
                    text=""
                    color="danger"
                    @click="removeBooks"
                    icon="trash"
                    v-if="hasSelection">
-        </ui-button>
-        <ui-button icon="plus"
+        </uk-button>
+        <uk-button icon="plus"
                    text="添加"
                    color="primary"
-                   @click="newBook"></ui-button>
+                   @click="newBook"></uk-button>
       </div>
       <div slot="footer">
         <pager v-if="totalBooks"
@@ -90,12 +90,10 @@
               </div>
             </div>
           </td>
-          <td class="small"
-          >
+          <td class="small">
             <div class="fill" :class="{'sorting':sorted('category')}">{{ book.category }}</div>
           </td>
-          <td class="published uk-text-center"
-          >
+          <td class="published uk-text-center">
             <div class="fill" :class="{'sorting':sorted('published')}">{{ book.published }}</div>
           </td>
         </tr>
@@ -105,13 +103,16 @@
       <modal ref="modal"
              :headerText="statusText"
              @dialogClose="current=undefined">
-        <!--book-edit-form :book="current"
-                        ref="form">
-        </book-edit-form-->
+        <book-edit-form :book="current"
+                        ref="form" v-if="current">
+        </book-edit-form>
+
         <div slot="footer"
              class="uk-modal-footer uk-text-right">
-          <ui-button text="保存" color="primary" @click="save"></ui-button>
-          <ui-button text="关闭" color="danger" @click="$refs.modal.close()"></ui-button>
+          <uk-button color="primary"
+                     @click="save">保存</uk-button>
+          <uk-button color="danger"
+                     @click="$refs.modal.close()">关闭</uk-button>
         </div>
       </modal>
     </view-page>
@@ -121,7 +122,7 @@
   import './assets/site.less'
   import Modal from './components/dialog.vue'
   import ViewPage from './components/viewpage.vue'
-  import UiButton from './components/button'
+  import UkButton from './components/button'
   import './components/tooltips'
   import Pager from './components/pager'
   import BookEditForm from './components/book-editform.vue'
@@ -236,7 +237,7 @@
       BookEditForm,
       CountingStatus,
       SearchBox,
-      UiButton,
+      UkButton,
       Empty,
       ViewPage
     }

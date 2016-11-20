@@ -1,3 +1,4 @@
+import uuid from 'uuid'
 export const Tab = {
   name: 'Tab',
   props: {
@@ -61,22 +62,32 @@ export const Tabs = {
 //     </ul>
 // </div>`
   render (h) {
+    let tabID = uuid.v4()
+    let tabJSON = `{ active:${this.active},connect:'#${tabID}'}`
     return (
       <div>
         <ul class="uk-tab"
-            data-uk-tab="{ active:0,connect:'#tabContents'}">
+            data-uk-tab={tabJSON}>
           {
             this.tabItems.map(tab => (
                 <li>
-                  <a href="">{ tab.label }</a>
+                  <a href="">{ tab.componentOptions.propsData.label }</a>
                 </li>
               )
             )
           }
         </ul>
         <ul class="uk-switcher uk-margin"
-            id="tabContents">
-          { this.tabItems }
+            id={tabID}>
+          {
+            this.tabItems.map(tab => (
+              <li>
+                {
+                  tab.componentOptions.children
+                }
+              </li>
+            ))
+          }
         </ul>
       </div>
     )
