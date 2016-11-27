@@ -27,6 +27,7 @@ var webpackConfig = merge(baseConfig, {
     }),
     new webpack.ProvidePlugin({
       CodeMirror: "codemirror",
+      Chance : "chance",
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",

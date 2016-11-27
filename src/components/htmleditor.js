@@ -25,11 +25,11 @@ export default {
   mounted () {
     // Vue 2.0 的组件只能单向赋值,以往可以通过两路绑定的做法已经失效
     // 所以只能通过事件将组件内部的数据变化暴露给父组件
-    var htmlEditor = window.UIkit.htmleditor(this.$refs.editor, {
+    let htmlEditor = window.UIkit.htmleditor(this.$refs.editor, {
       markdown: true,
       mode: 'tab'
     })
-    var self = this
+    let self = this
     this.$ui.$(this.$refs.editor).on('input', () => {
       const _val = htmlEditor.editor.getValue()
       if (_val !== self.value) {
@@ -40,7 +40,8 @@ export default {
   render (h) {
     return (
       <div>
-        <textarea rows="20" ref="editor">
+        <textarea rows="20"
+                  ref="editor">
           { this.value }
         </textarea>
       </div>

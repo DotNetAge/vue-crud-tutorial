@@ -3,7 +3,7 @@ import {getVM} from '../helpers'
 import _ from 'lodash'
 
 describe('button', () => {
-  it('应该输出UIKit Button的网页样式', () => {
+  it('$mount', () => {
     let vm = getVM(h => (
       <uk-button icon="disk">
         保存

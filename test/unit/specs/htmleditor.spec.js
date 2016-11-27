@@ -2,27 +2,31 @@ import UIKit from 'src/vue-uikit'
 import Vue from 'vue'
 import HtmlEditor from 'components/htmleditor'
 import {getVM} from '../helpers'
-import 'chance'
+// import 'chance'
 Vue.use(UIKit)
 
-xdescribe('htmleditor', () => {
-  it('应该在内容修该时出发change 事件', () => {
-    let valueChangedHandler = sinon.spy()
-    let editingContent = window.chance.paragraph()
+describe('htmleditor', () => {
 
-    let vm = getVM(h => (<html-editor value={editingContent}
+  it('应该在内容修时出发 change 事件', () => {
+    const valueChangedHandler = sinon.spy()
+    const originalContent = Chance().paragraph()
+    const editingContent = Chance().paragraph()
+
+    let vm = getVM(h => (<html-editor value={originalContent}
                                       on-change={valueChangedHandler}>
 
     </html-editor>), {HtmlEditor})
+    let editor = vm.$children[0]
+    // 取得HtmlEditor生成的textarea原素
+    let textarea = editor.$el.querySelector('textarea')
 
-    let textarea = window.$(vm.$el.querySelector('textarea'))
-    // textarea.value = editingContent
+    expect(textarea.textContent).to.eqls(originalContent)
 
-    // TODO:Change value via editor
+    editor.value = editingContent
 
-    textarea.trigger('input')
+    // 触发数据输入事件
+    $(textarea).trigger('input')
 
-    // expect
     expect(valueChangedHandler).to.have.been.called
   })
 })
