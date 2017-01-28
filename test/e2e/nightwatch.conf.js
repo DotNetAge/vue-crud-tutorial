@@ -1,20 +1,17 @@
-process.env.NODE_ENV = 'testing'
-var server = require('../../build/dev-server.js')
-
 require('babel-register');
 var config = require('../../config');
 var seleniumServer = require('selenium-server');
 var phantomjs = require('phantomjs-prebuilt');
 
-require('nightwatch-cucumber')({
-  nightwatchClientAsParameter: true,
-  featureFiles: ['test/e2e/features'],
-  //supportFiles:['build/dev-server.js'],
-  stepDefinitions: ['test/e2e/features/step_definitions'],
-  jsonReport: 'test/e2e/reports/cucumber.json',
-  htmlReport: 'test/e2e/reports/cucumber.html',
-  openReport: false
-});
+// require('nightwatch-cucumber')({
+//   nightwatchClientAsParameter: true,
+//   featureFiles: ['test/e2e/features'],
+//   //supportFiles:['build/dev-server.js'],
+//   stepDefinitions: ['test/e2e/features/step_definitions'],
+//   jsonReport: 'test/e2e/reports/cucumber.json',
+//   htmlReport: 'test/e2e/reports/cucumber.html',
+//   openReport: false
+// });
 
 // http://nightwatchjs.org/guide#settings-file
 module.exports = {
@@ -31,13 +28,13 @@ module.exports = {
       "webdriver.chrome.driver": require('chromedriver').path
     }
   },
-  // "test_runner" : {
-  //   "type" : "mocha",
-  //   "options" : {
-  //     "ui" : "bdd",
-  //     "reporter" : "list"
-  //   }
-  // },
+  "test_runner" : {
+    "type" : "mocha",
+    "options" : {
+      "ui" : "bdd",
+      "reporter" : "list"
+    }
+  },
   "test_settings": {
     "default": {
       "selenium_port": 4444,

@@ -2,7 +2,7 @@ import SearchBox from 'components/search-box'
 import {getVM} from '../helpers'
 
 describe('search-box', () => {
-  it('#search', () => {
+  xit('#search', () => {
     let searchHandler = sinon.spy()
     const searchTerm = Chance().word()
     let vm = getVM(h => <search-box on-search={ searchHandler }>

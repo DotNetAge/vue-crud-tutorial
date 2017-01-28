@@ -3,7 +3,7 @@
     class="uk-text-bold">{{ total }}</span>本图书
     <span v-if="selection">
       &nbsp;已选中<span
-      class="uk-text-bold">{{ selection }}</span>本图书
+      class="uk-text-bold selection">{{ selection }}</span>本图书
     </span>
   </span>
 </template>

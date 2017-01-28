@@ -8,7 +8,7 @@ export default {
   },
   render (h) {
     return (
-      <div class="uk-margin-top uk-text-muted uk-text-large uk-text-center">
+      <div class="uk-margin-top uk-text-muted uk-text-large uk-text-center empty-holder">
         { this.text }
       </div>
     )

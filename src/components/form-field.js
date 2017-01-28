@@ -1,3 +1,5 @@
+import {Validator} from 'vee-validate'
+
 export default {
   name: 'FormField',
   props: {
@@ -8,8 +10,9 @@ export default {
     inputType: {type: String, default: 'text'}
   },
   mounted () {
-    if (this.rules)
-      validator.attach(this.name, this.rules)
+    if (this.rules) {
+      this.validator.attach(this.name, this.rules)
+    }
   },
   methods: {
     onValidate (e) {
@@ -20,15 +23,26 @@ export default {
   },
   computed: {
     validator () {
-      return this.$parent.$validator
+      if (this.$parent.$validator) {
+        return this.$parent.$validator
+      } else {
+        if (this._validator) {
+          return this._validator
+        } else {
+          const validator = new Validator()
+          validator.attach(this.name, this.rules, this.label)
+          this._validator = validator
+          return validator
+        }
+      }
     },
     errorBag () {
-      return this.$parent.errors
+      return this.validator.errorBag
     },
     hasError () {
       return this.errorBag.has(this.name)
     },
-    errorMsg() {
+    errorMsg () {
       this.errorBag.first(this.name)
     }
   },
@@ -44,7 +58,7 @@ export default {
                  'uk-form-width-large': true,
                  'uk-form-danger': this.hasError
                }}
-               on-input={ onValidate }
+               on-input={ this.onValidate }
                value={this.value}/>
         <small class={{
           'uk-text-danger': true,
