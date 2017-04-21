@@ -63,7 +63,7 @@ app.use('/api', mocks)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-module.exports = app.listen(port, function (err) {
+module.exports =process.env.NODE_ENV !== 'testing' ? app.listen(port, function (err) {
   if (err) {
     console.log(err)
     return
@@ -71,6 +71,6 @@ module.exports = app.listen(port, function (err) {
   var uri = 'http://localhost:' + port
   console.log('Listening at ' + uri + '\n')
 
-  if (process.env.NODE_ENV !== 'testing')
-    opn(uri)
-})
+  //if (process.env.NODE_ENV !== 'testing')
+  opn(uri)
+}) : app

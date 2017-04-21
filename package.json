@@ -1,13 +1,12 @@
 {
-  "name": "vue-grid",
-  "description": "A Vue.js project",
+  "name": "vue-crud-tutorial",
+  "description": "图书Vue CRUD 示例",
   "author": "Ray <csharp2002@hotmail.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
+    "e2e": "nightwatch --config test/e2e/nightwatch.conf.js --env phantom",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
@@ -35,7 +34,6 @@
     "cross-env": "^3.1.3",
     "cross-spawn": "^4.0.2",
     "css-loader": "^0.25.0",
-    "cucumber": "^1.3.1",
     "eslint": "^3.7.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-friendly-formatter": "^2.0.5",
@@ -70,7 +68,6 @@
     "mocha": "^3.1.0",
     "moment": "^2.15.2",
     "nightwatch": "^0.9.8",
-    "nightwatch-cucumber": "^5.6.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.3",

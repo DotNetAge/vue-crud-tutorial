@@ -40,6 +40,7 @@
         <tr>
           <th class="uk-text-center disable-select"
               :class="{'sorting':sorted('name')}"
+              data-col="name"
               @click="sortBy('name')">
             <div>书名
               <span :class="{
@@ -49,6 +50,7 @@
           </th>
           <th class="uk-text-center uk-width-1-6 disable-select"
               :class="{'sorting':sorted('category')}"
+              data-col="category"
               @click="sortBy('category')">
             <div>类别
               <span :class="{
@@ -58,6 +60,7 @@
           </th>
           <th class="uk-text-center uk-width-1-6 disable-select"
               :class="{'sorting':sorted('published')}"
+              data-col="published"
               @click="sortBy('published')">
             <div>出版日期
               <span :class="{

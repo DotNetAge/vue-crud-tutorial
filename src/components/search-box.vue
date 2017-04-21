@@ -16,7 +16,6 @@
     props: ['terms', 'placeholder'],
     methods: {
       onSearch (e) {
-        debugger
         this.$emit('search', e.target.value)
       }
     }

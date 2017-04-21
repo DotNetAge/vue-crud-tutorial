@@ -1,31 +1,14 @@
-# vue-grid
+# 《Vue2实践揭秘》 - 第6章示例源码
 
-> A Vue.js project
 
-## Build Setup
+## 安装依赖包
 
 ``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+npm i
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 运行本示例
 
-
-
-npm i chance codemirror less less-loader lodash marked moment uikit --save-dev
+```
+npm run dev
+```

@@ -1,10 +1,8 @@
-describe('图书CURD示例', () => {
+describe('图书管理视图', () => {
 
   it('应该筛选与搜索框输入匹配的图书数据', (client) => {
-    const startURL = client.globals.rootURL
     const terms = '大数据'
-
-    client.url(startURL)
+    client.url(client.launchUrl)
       .waitForElementVisible('body', 30000) // 此处的延时可以设置得长一些，否则Webpack未编译成功就发送请求而会导致失败
       .setValue('input[type="search"]', [terms, client.Keys.ENTER])
       .assert.containsText('.book-name', terms)
@@ -14,10 +12,9 @@ describe('图书CURD示例', () => {
   })
 
   it('多行数据选定时应该显示删除按钮、显示选中的数量以及选中的样式', client => {
-    const startURL = client.globals.rootURL
     const isbns = ['978-7-121-28410-6', '978-7-121-28817-3', '978-7-121-28413-7'] //对Element的定位很重要，这里只能是个体
 
-    client.url(startURL)
+    client.url(client.launchUrl)
       .waitForElementVisible('body', 30000)
       .assert.elementNotPresent('.selection')
       .assert.elementNotPresent('#btn-delete')
@@ -37,7 +34,6 @@ describe('图书CURD示例', () => {
 
 
   it('点击列头时应该进行排序', client => {
-    const startURL = client.globals.rootURL
     const colName = 'th[data-col="name"]'
     const colCat = 'th[data-col="category"]'
     const colPub = 'th[data-col="published"]'
@@ -45,7 +41,7 @@ describe('图书CURD示例', () => {
     const asc = 'div>span.uk-icon-sort-asc'
     const desc = 'div>span.uk-icon-sort-desc'
 
-    client.url(startURL)
+    client.url(client.launchUrl)
       .waitForElementVisible('body', 30000)
       .assert.cssClassNotPresent(colName, sortingClass)
       .assert.cssClassNotPresent(colCat, sortingClass)
@@ -53,16 +49,16 @@ describe('图书CURD示例', () => {
       .assert.elementNotPresent(`${colName}>div>span`)
       .assert.elementNotPresent(`${colCat}>div>span`)
       .assert.elementNotPresent(`${colPub}>div>span`)
-      .getAttribute('tbody>tr.first', 'data-isbn', result => {
+      .getAttribute('#app tbody>tr:first', 'data-isbn', result => {
         this.assert.equal(result.value, '978-7-121-28410-6') // 无排序
       })
       .click(colName) // 对名称进行排序
       .assert.elementPresent(`${colName}>${asc}`)
-      .getAttribute('tbody>tr.first', 'data-isbn', result => {
+      .getAttribute('tbody>tr:first', 'data-isbn', result => {
         this.assert.equal(result.value, '978-7-121-28413-7') // 升序
       })
       .click(colName) // 反向排序
-      .getAttribute('tbody>tr.first', 'data-isbn', result => {
+      .getAttribute('tbody>tr:first', 'data-isbn', result => {
         this.assert.equal(result.value, '978-7-121-28381-9') //降序
       })
       .assert.elementPresent(`${colName}>${desc}`)

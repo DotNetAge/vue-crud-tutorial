@@ -1,6 +1,5 @@
 import 'jquery'
 import 'uikit'
-import 'uikit-css'
 import 'uikit-theme'
 
 export default (Vue, options) => {

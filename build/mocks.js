@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var mockData = require('../src/fixtures/items.json');
-var _ = require('lodash');
+const express = require('express');
+const router = express.Router();
+let mockData = require('../src/fixtures/items.json');
+const _ = require('lodash');
 
 router.get('/books', function (req, res) {
-  var page = req.query.page || 0,
+  const page = req.query.page || 0,
     size = req.query.size || 10,
     filter = req.query.filter,
     skipStart = (page > 0 ? page - 1 : page) * size,
@@ -15,7 +15,7 @@ router.get('/books', function (req, res) {
     }) : mockData;
 
   // 对数据进行分页
-  pageData = _.take(_.slice(filteredData, skipStart), size);
+  const pageData = _.take(_.slice(filteredData, skipStart), size);
 
   res.json({
     total_records: filteredData.length,
@@ -27,21 +27,20 @@ router.get('/books', function (req, res) {
 
 })
   .post('/books', function (req, res) {
-    debugger
     mockData.push(req.body)
     res.json(req.body)
   })
   .put('/books/:isbn', function (req, res) {
     mockData = _.reject(mockData, function (d) {
       return d.isbn === req.body.isbn
-    })
-    mockData.push(req.body)
-    res.json({msg: 'success'})
+    });
+    mockData.push(req.body);
+    res.json({msg: 'success'});
   })
   .delete('/books', function (req, res) {
     mockData = _.reject(mockData, function (d) {
       return _.indexOf(req.body, d.isbn) > -1
-    })
+    });
     res.json({msg: 'success'});
   });
 
